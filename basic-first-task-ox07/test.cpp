@@ -4,5 +4,5 @@
 
 TEST(ShipClassTests, ShouldBeAbleToCreateShipClass)
 {
-    ship empty_ship;
+    Ship empty_ship;
 }
