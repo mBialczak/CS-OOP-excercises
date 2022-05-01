@@ -19,11 +19,20 @@ TEST(ShipClassTests, GetIdShouldReturnEmptyIdIfIdNotSet)
     EXPECT_NE("", non_empty_name);
 }
 
-TEST(ShipClassTests, idShouldReturnCorrectShipId)
+TEST(ShipClassTests, IdShouldReturnCorrectShipId)
 {
     Ship jevenau { "Z3EW" };
 
     auto id = jevenau.id();
 
     EXPECT_EQ(id, "Z3EW");
+}
+
+TEST(ShipClassTests, ShouldReturnEmptyNameIfNameNotGiven)
+{
+    Ship no_namer;
+
+    auto name = no_namer.name();
+
+    EXPECT_EQ("", name);
 }
