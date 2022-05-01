@@ -1,6 +1,6 @@
 
 
-int main(int argc, const char* argv[])
+int main([[maybe_unused]] int argc, [[maybe_unused]] const char* argv[])
 {
     return 0;
 }
