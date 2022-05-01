@@ -1,6 +1,6 @@
-#include <gtest/gtest.h>
-
 #include "Ship.hpp"
+
+#include <gtest/gtest.h>
 
 TEST(ShipClassTests, ShouldBeAbleToCreateShipClass)
 {
@@ -10,7 +10,7 @@ TEST(ShipClassTests, ShouldBeAbleToCreateShipClass)
 TEST(ShipClassTests, GetIdShouldReturnEmptyIdIfIdNotSet)
 {
     Ship empty_ship;
-    Ship named_ship { "Z3EW" };
+    Ship named_ship { "Z3EW", "Jevenau" };
 
     auto empty_name = empty_ship.id();
     auto non_empty_name = named_ship.id();
@@ -21,7 +21,7 @@ TEST(ShipClassTests, GetIdShouldReturnEmptyIdIfIdNotSet)
 
 TEST(ShipClassTests, IdShouldReturnCorrectShipId)
 {
-    Ship jevenau { "Z3EW" };
+    Ship jevenau { "Z3EW", "Jevenau" };
 
     auto id = jevenau.id();
 
@@ -35,4 +35,13 @@ TEST(ShipClassTests, ShouldReturnEmptyNameIfNameNotGiven)
     auto name = no_namer.name();
 
     EXPECT_EQ("", name);
+}
+
+TEST(ShipClassTests, ShouldReturnNameOfShip)
+{
+    Ship ruler { "E5WR", "Arklow Ruler" };
+
+    auto name = ruler.name();
+
+    EXPECT_EQ("Arklow Ruler", name);
 }

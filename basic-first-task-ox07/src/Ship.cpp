@@ -1,7 +1,8 @@
 #include "Ship.hpp"
 
-Ship::Ship(const std::string& id)
+Ship::Ship(const std::string& id, const std::string& name)
     : id_(id)
+    , name_(name)
 {
 }
 

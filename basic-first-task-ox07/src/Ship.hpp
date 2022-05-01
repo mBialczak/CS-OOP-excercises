@@ -5,7 +5,7 @@ class Ship
 {
   public:
     Ship() = default;
-    Ship(const std::string& id);
+    Ship(const std::string& id, const std::string& name);
     std::string id() const;
     std::string name() const;
 
