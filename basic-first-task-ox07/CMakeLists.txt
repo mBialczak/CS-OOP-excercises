@@ -18,19 +18,19 @@ FetchContent_MakeAvailable(googletest)
 enable_testing()
 
 # ship class lib target
-add_library(ship-lib Ship.cpp)
+add_library(ship-lib src/Ship.cpp)
 target_compile_options(ship-lib PRIVATE -Wall -Wextra -pedantic -Wconversion -Werror)
 target_compile_features(ship-lib PRIVATE cxx_std_20)
 
 # main app target
-add_executable(${PROJECT_NAME} main.cpp)
+add_executable(${PROJECT_NAME} src/main.cpp)
 target_link_libraries(${PROJECT_NAME} ship-lib)
 target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -pedantic -Wconversion -Werror)
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
 
 # test target
-add_executable(${PROJECT_NAME}-ut test.cpp)
-target_link_libraries(${PROJECT_NAME}-ut gtest_main gmock_main)
+add_executable(${PROJECT_NAME}-ut src/test.cpp)
+target_link_libraries(${PROJECT_NAME}-ut ship gtest_main gmock_main)
 target_compile_options(${PROJECT_NAME}-ut PRIVATE -Wall -Wextra -pedantic)
 target_compile_features(${PROJECT_NAME}-ut PRIVATE cxx_std_20)
 
