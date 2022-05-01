@@ -30,7 +30,7 @@ target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
 
 # test target
 add_executable(${PROJECT_NAME}-ut src/test.cpp)
-target_link_libraries(${PROJECT_NAME}-ut ship gtest_main gmock_main)
+target_link_libraries(${PROJECT_NAME}-ut ship-lib gtest_main)
 target_compile_options(${PROJECT_NAME}-ut PRIVATE -Wall -Wextra -pedantic)
 target_compile_features(${PROJECT_NAME}-ut PRIVATE cxx_std_20)
 
