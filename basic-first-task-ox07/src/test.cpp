@@ -16,46 +16,23 @@ ShipTest::ShipTest()
 {
 }
 
-TEST(ShipClassTests, ShouldBeAbleToCreateShipClass)
+TEST_F(ShipTest, IdShouldReturnEmptyIdIfIdNotSet)
 {
-    Ship empty_ship;
+    EXPECT_EQ(empty_ship_.id(), "");
+    EXPECT_NE(ship_with_id_and_name_.id(), "");
 }
 
-TEST(ShipClassTests, GetIdShouldReturnEmptyIdIfIdNotSet)
+TEST_F(ShipTest, IdShouldReturnCorrectShipId)
 {
-    Ship empty_ship;
-    Ship named_ship { "Z3EW", "Jevenau" };
-
-    auto empty_name = empty_ship.id();
-    auto non_empty_name = named_ship.id();
-
-    EXPECT_EQ("", empty_name);
-    EXPECT_NE("", non_empty_name);
+    EXPECT_EQ(ship_with_id_and_name_.id(), "Z3EW");
 }
 
-TEST(ShipClassTests, IdShouldReturnCorrectShipId)
+TEST_F(ShipTest, NameShouldReturnEmptyNameIfNameNotGiven)
 {
-    Ship jevenau { "Z3EW", "Jevenau" };
-
-    auto id = jevenau.id();
-
-    EXPECT_EQ(id, "Z3EW");
+    EXPECT_EQ(empty_ship_.id(), "");
 }
 
-TEST(ShipClassTests, ShouldReturnEmptyNameIfNameNotGiven)
+TEST_F(ShipTest, NameShouldReturnNameOfNamedShip)
 {
-    Ship no_namer;
-
-    auto name = no_namer.name();
-
-    EXPECT_EQ("", name);
-}
-
-TEST(ShipClassTests, ShouldReturnNameOfShip)
-{
-    Ship ruler { "E5WR", "Arklow Ruler" };
-
-    auto name = ruler.name();
-
-    EXPECT_EQ("Arklow Ruler", name);
+    EXPECT_EQ(ship_with_id_and_name_.name(), "Jevenau");
 }
