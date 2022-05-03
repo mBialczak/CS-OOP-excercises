@@ -7,6 +7,7 @@ class Ship
     Ship() = default;
     Ship(const std::string& id, const std::string& name);
     Ship(const std::string& id, const std::string& name, double speed);
+    Ship(const std::string& id, const std::string& name, double speed, unsigned maxCrew);
     std::string id() const;
     std::string name() const;
     double speed() const;
