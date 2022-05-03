@@ -15,3 +15,8 @@ std::string Ship::name() const
 {
     return name_;
 }
+
+double Ship::speed() const
+{
+    return speed_;
+}
