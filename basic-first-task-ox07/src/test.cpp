@@ -2,6 +2,20 @@
 
 #include <gtest/gtest.h>
 
+class ShipTest : public testing::Test
+{
+  protected:
+    ShipTest();
+    Ship empty_ship_;
+    Ship ship_with_id_and_name_;
+};
+
+ShipTest::ShipTest()
+    : empty_ship_()
+    , ship_with_id_and_name_("Z3EW", "Jevenau")
+{
+}
+
 TEST(ShipClassTests, ShouldBeAbleToCreateShipClass)
 {
     Ship empty_ship;
