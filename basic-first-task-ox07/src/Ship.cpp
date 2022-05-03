@@ -44,3 +44,8 @@ unsigned Ship::maxCrew() const
 {
     return maxCrew_;
 }
+
+unsigned Ship::capacity() const
+{
+    return capacity_;
+}

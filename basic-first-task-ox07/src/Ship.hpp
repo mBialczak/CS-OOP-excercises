@@ -12,10 +12,12 @@ class Ship
     std::string name() const;
     double speed() const;
     unsigned maxCrew() const;
+    unsigned capacity() const;
 
   private:
     std::string id_;
     std::string name_;
     double speed_;
     unsigned maxCrew_;
+    unsigned capacity_;
 };
