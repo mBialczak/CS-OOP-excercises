@@ -15,6 +15,7 @@ class Ship
     double speed() const;
     unsigned maxCrew() const;
     unsigned capacity() const;
+    void setName(const std::string& newName);
 
   private:
     std::string id_;

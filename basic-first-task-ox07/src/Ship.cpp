@@ -60,3 +60,8 @@ unsigned Ship::capacity() const
 {
     return capacity_;
 }
+
+void Ship::setName(const std::string& newName)
+{
+    name_ = newName;
+}
