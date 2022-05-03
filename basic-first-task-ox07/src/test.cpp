@@ -10,6 +10,7 @@ class ShipTest : public testing::Test
     Ship ship_with_id_and_name_;
     Ship ship_with_id_name_speed;
     Ship ship_with_max_crew;
+    Ship ship_with_capacity;
 };
 
 ShipTest::ShipTest()
@@ -17,6 +18,7 @@ ShipTest::ShipTest()
     , ship_with_id_and_name_("Z3EW", "Jevenau")
     , ship_with_id_name_speed("B4EZ", "Morning Star", 10.2)
     , ship_with_max_crew("EYNN", "Sniadecki", 15.5, 800)
+    , ship_with_capacity("AE4E", "MSC Incredible", 13.5, 30, 4000)
 {
 }
 
@@ -64,4 +66,9 @@ TEST_F(ShipTest, MaxCrewShouldReturnShipsMaxCrewWhenSet)
 TEST_F(ShipTest, CapacityShouldReturnZeroForEmptyShip)
 {
     EXPECT_EQ(empty_ship_.capacity(), 0);
+}
+
+TEST_F(ShipTest, CapacityShouldReturnShipsCapacityWhenSet)
+{
+    EXPECT_EQ(ship_with_capacity.capacity(), 4000);
 }
