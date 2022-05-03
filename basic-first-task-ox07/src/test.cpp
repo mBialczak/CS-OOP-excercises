@@ -22,20 +22,17 @@ ShipTest::ShipTest()
 {
 }
 
-TEST_F(ShipTest, IdShouldReturnEmptyIdIfIdNotSet)
+TEST_F(ShipTest, UninitializedShipShouldReturnCorrectValues)
 {
     EXPECT_EQ(empty_ship_.id(), "");
-    EXPECT_NE(ship_with_id_and_name_.id(), "");
+    EXPECT_EQ(empty_ship_.name(), "");
+    EXPECT_EQ(empty_ship_.speed(), 0.0);
+    EXPECT_EQ(empty_ship_.maxCrew(), 0);
+    EXPECT_EQ(empty_ship_.capacity(), 0);
 }
-
 TEST_F(ShipTest, IdShouldReturnCorrectShipId)
 {
     EXPECT_EQ(ship_with_id_and_name_.id(), "Z3EW");
-}
-
-TEST_F(ShipTest, NameShouldReturnEmptyNameIfNameNotGiven)
-{
-    EXPECT_EQ(empty_ship_.id(), "");
 }
 
 TEST_F(ShipTest, NameShouldReturnNameOfNamedShip)
@@ -43,29 +40,14 @@ TEST_F(ShipTest, NameShouldReturnNameOfNamedShip)
     EXPECT_EQ(ship_with_id_and_name_.name(), "Jevenau");
 }
 
-TEST_F(ShipTest, SpeedShouldReturnZeroIfNotSet)
-{
-    EXPECT_EQ(empty_ship_.speed(), 0);
-}
-
 TEST_F(ShipTest, SpeedShouldReturnCorrectSpeedOfTheShip)
 {
     EXPECT_EQ(ship_with_id_name_speed.speed(), 10.2);
 }
 
-TEST_F(ShipTest, MaxCrewShouldReturnZeroForEmptyShip)
-{
-    EXPECT_EQ(empty_ship_.maxCrew(), 0);
-}
-
 TEST_F(ShipTest, MaxCrewShouldReturnShipsMaxCrewWhenSet)
 {
     EXPECT_EQ(ship_with_max_crew.maxCrew(), 800);
-}
-
-TEST_F(ShipTest, CapacityShouldReturnZeroForEmptyShip)
-{
-    EXPECT_EQ(empty_ship_.capacity(), 0);
 }
 
 TEST_F(ShipTest, CapacityShouldReturnShipsCapacityWhenSet)
