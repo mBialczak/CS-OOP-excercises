@@ -54,3 +54,10 @@ TEST_F(ShipTest, CapacityShouldReturnShipsCapacityWhenSet)
 {
     EXPECT_EQ(ship_with_capacity.capacity(), 4000);
 }
+
+TEST_F(ShipTest, SetNameShouldSetNameInAValidWay)
+{
+    std::string new_name("Newly Build one");
+    empty_ship_.setName(new_name);
+    EXPECT_EQ(empty_ship_.name(), new_name);
+}
