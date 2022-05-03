@@ -3,6 +3,18 @@
 Ship::Ship(const std::string& id,
            const std::string& name,
            double speed,
+           unsigned maxCrew,
+           unsigned capacity)
+    : id_(id)
+    , name_(name)
+    , speed_(speed)
+    , maxCrew_(maxCrew)
+    , capacity_(capacity)
+{ }
+
+Ship::Ship(const std::string& id,
+           const std::string& name,
+           double speed,
            unsigned maxCrew)
     : id_(id)
     , name_(name)
