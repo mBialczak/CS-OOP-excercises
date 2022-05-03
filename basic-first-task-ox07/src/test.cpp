@@ -56,7 +56,7 @@ TEST_F(ShipTest, MaxCrewShouldReturnZeroForEmptyShip)
     EXPECT_EQ(empty_ship_.maxCrew(), 0);
 }
 
-TEST_F(ShipTest, MaxCrewShouldReturnShipsCapacityWhenSet)
+TEST_F(ShipTest, MaxCrewShouldReturnShipsMaxCrewWhenSet)
 {
     EXPECT_EQ(ship_with_max_crew.maxCrew(), 800);
 }
