@@ -29,3 +29,8 @@ double Ship::speed() const
 {
     return speed_;
 }
+
+unsigned Ship::maxCrew() const
+{
+    return maxCrew_;
+}

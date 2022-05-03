@@ -48,3 +48,8 @@ TEST_F(ShipTest, SpeedShouldReturnCorrectSpeedOfTheShip)
 {
     EXPECT_EQ(ship_with_id_name_speed.speed(), 10.2);
 }
+
+TEST_F(ShipTest, MaxCrewShouldReturnZeroForEmptyShip)
+{
+    EXPECT_EQ(empty_ship_.maxCrew(), 0);
+}
