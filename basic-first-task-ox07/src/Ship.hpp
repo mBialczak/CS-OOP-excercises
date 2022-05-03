@@ -6,6 +6,7 @@ class Ship
   public:
     Ship() = default;
     Ship(const std::string& id, const std::string& name);
+    Ship(const std::string& id, const std::string& name, double speed);
     std::string id() const;
     std::string name() const;
     double speed() const;

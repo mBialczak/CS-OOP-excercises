@@ -1,5 +1,14 @@
 #include "Ship.hpp"
 
+Ship::Ship(const std::string& id,
+           const std::string& name,
+           double speed)
+    : id_(id)
+    , name_(name)
+    , speed_(speed)
+{
+}
+
 Ship::Ship(const std::string& id, const std::string& name)
     : id_(id)
     , name_(name)
