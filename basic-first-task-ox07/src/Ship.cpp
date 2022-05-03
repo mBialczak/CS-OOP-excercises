@@ -16,18 +16,13 @@ Ship::Ship(const std::string& id,
            const std::string& name,
            double speed,
            unsigned maxCrew)
-    : id_(id)
-    , name_(name)
-    , speed_(speed)
-    , maxCrew_(maxCrew)
+    : Ship(id, name, speed, maxCrew, 0)
 { }
 
 Ship::Ship(const std::string& id,
            const std::string& name,
            double speed)
-    : id_(id)
-    , name_(name)
-    , speed_(speed)
+    : Ship(id, name, speed, 0, 0)
 {
 }
 
@@ -37,8 +32,7 @@ Ship::Ship(const std::string& id, double speed, unsigned maxCrew)
 }
 
 Ship::Ship(const std::string& id, const std::string& name)
-    : id_(id)
-    , name_(name)
+    : Ship(id, name, 0.0, 0, 0)
 {
 }
 
