@@ -52,7 +52,7 @@ double Ship::speed() const
     return speed_;
 }
 
-unsigned Ship::maxCrew() const
+int Ship::maxCrew() const
 {
     return maxCrew_;
 }
@@ -74,7 +74,7 @@ void Ship::setName(const std::string& newName)
 
 Ship& Ship::operator+=(int crewToAdd)
 {
-    unsigned new_crew_number = crew_ + crewToAdd;
+    int new_crew_number = crew_ + crewToAdd;
     if (new_crew_number <= maxCrew_) {
         crew_ = new_crew_number;
     }

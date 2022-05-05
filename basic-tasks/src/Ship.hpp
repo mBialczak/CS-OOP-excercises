@@ -15,7 +15,7 @@ class Ship
     std::string id() const;
     std::string name() const;
     double speed() const;
-    unsigned maxCrew() const;
+    int maxCrew() const;
     unsigned capacity() const;
     int crew() const;
     // Setters
@@ -27,7 +27,7 @@ class Ship
     std::string id_;
     std::string name_;
     double speed_;
-    unsigned maxCrew_;
+    int maxCrew_;
     int crew_;
     unsigned capacity_;
 };
