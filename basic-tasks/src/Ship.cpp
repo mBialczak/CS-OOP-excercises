@@ -61,6 +61,11 @@ unsigned Ship::capacity() const
     return capacity_;
 }
 
+unsigned Ship::crew() const
+{
+    return crew_;
+}
+
 void Ship::setName(const std::string& newName)
 {
     name_ = newName;

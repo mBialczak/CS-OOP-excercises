@@ -61,3 +61,8 @@ TEST_F(ShipTest, SetNameShouldSetNameInAValidWay)
     empty_ship_.setName(new_name);
     EXPECT_EQ(empty_ship_.name(), new_name);
 }
+
+TEST_F(ShipTest, CrewShouldReturnCurrentNumberOfCrewEnroled)
+{
+    EXPECT_EQ(empty_ship_.crew(), 0);
+}
