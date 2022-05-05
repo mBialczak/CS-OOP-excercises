@@ -9,6 +9,7 @@ Ship::Ship(const std::string& id,
     , name_(name)
     , speed_(speed)
     , maxCrew_(maxCrew)
+    , crew_(0)
     , capacity_(capacity)
 { }
 
