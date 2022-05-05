@@ -93,3 +93,12 @@ TEST_F(ShipTest, CompoundSubstractionOperatorShouldSubstructCrew)
     auto current_crew = jevenau.crew();
     EXPECT_EQ(current_crew, 7);
 }
+
+TEST_F(ShipTest, CompoundSubstractionShouldDoNothingIfCrewWouldFallBelowZero)
+{
+
+    jevenau += 4;
+    jevenau -= 6;
+    auto current_crew = jevenau.crew();
+    EXPECT_EQ(current_crew, 4);
+}
