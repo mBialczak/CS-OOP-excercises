@@ -85,3 +85,11 @@ TEST_F(ShipTest, AddinCrewWithOperatorShouldDoNothingIfMaxCrewExceeded)
     auto crew = jevenau.crew();
     EXPECT_EQ(crew, 8);
 }
+
+TEST_F(ShipTest, CompoundSubstractionOperatorShouldSubstructCrew)
+{
+    jevenau += 10;
+    jevenau -= 3;
+    auto current_crew = jevenau.crew();
+    EXPECT_EQ(current_crew, 7);
+}
