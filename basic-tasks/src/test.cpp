@@ -66,3 +66,10 @@ TEST_F(ShipTest, CrewShouldReturnCurrentNumberOfCrewEnroled)
 {
     EXPECT_EQ(empty_ship_.crew(), 0);
 }
+
+TEST_F(ShipTest, CompoundAddAssingOperShouldAddCrewToTheShip)
+{
+    ship_with_max_crew += 10;
+    auto new_crew_number = ship_with_max_crew.crew();
+    EXPECT_EQ(new_crew_number, 10);
+}
