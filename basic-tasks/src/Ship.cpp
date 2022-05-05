@@ -62,7 +62,7 @@ unsigned Ship::capacity() const
     return capacity_;
 }
 
-unsigned Ship::crew() const
+int Ship::crew() const
 {
     return crew_;
 }

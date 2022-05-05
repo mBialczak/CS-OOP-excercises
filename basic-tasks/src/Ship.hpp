@@ -17,16 +17,17 @@ class Ship
     double speed() const;
     unsigned maxCrew() const;
     unsigned capacity() const;
-    unsigned crew() const;
+    int crew() const;
     // Setters
     void setName(const std::string& newName);
     Ship& operator+=(int crewToAdd);
+    Ship& operator-=(int crewToSubstruct);
 
   private:
     std::string id_;
     std::string name_;
     double speed_;
     unsigned maxCrew_;
-    unsigned crew_;
+    int crew_;
     unsigned capacity_;
 };
