@@ -11,14 +11,16 @@ class ShipTest : public testing::Test
     Ship ship_with_id_name_speed;
     Ship ship_with_max_crew;
     Ship ship_with_capacity;
+    Ship jevenau;
 };
 
 ShipTest::ShipTest()
     : empty_ship_()
-    , ship_with_id_and_name_("Z3EW", "Jevenau")
+    , ship_with_id_and_name_("Z3EW", "Jevenau", 14, 10, 2100)
     , ship_with_id_name_speed("B4EZ", "Morning Star", 10.2)
     , ship_with_max_crew("EYNN", "Sniadecki", 15.5, 800)
     , ship_with_capacity("AE4E", "MSC Incredible", 13.5, 30, 4000)
+    , jevenau("Z3EW", "Jevenau", 14, 10, 2100)
 {
 }
 
@@ -72,4 +74,14 @@ TEST_F(ShipTest, CompoundAddAssingOperShouldAddCrewToTheShip)
     ship_with_max_crew += 10;
     auto new_crew_number = ship_with_max_crew.crew();
     EXPECT_EQ(new_crew_number, 10);
+}
+
+TEST_F(ShipTest, AddinCrewWithOperatorShouldDoNothingIfMaxCrewExceeded)
+{
+    jevenau += 5;
+    jevenau += 3;
+    // another addition exceeding crew max should not change the crew number
+    jevenau += 7;
+    auto crew = jevenau.crew();
+    EXPECT_EQ(crew, 8);
 }
