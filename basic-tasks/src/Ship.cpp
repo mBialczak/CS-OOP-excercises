@@ -70,3 +70,9 @@ void Ship::setName(const std::string& newName)
 {
     name_ = newName;
 }
+
+Ship& Ship::operator+=(int crewToAdd)
+{
+    crew_ += crewToAdd;
+    return *this;
+}

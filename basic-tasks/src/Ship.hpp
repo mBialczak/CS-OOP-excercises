@@ -20,6 +20,7 @@ class Ship
     unsigned crew() const;
     // Setters
     void setName(const std::string& newName);
+    Ship& operator+=(int crewToAdd);
 
   private:
     std::string id_;
