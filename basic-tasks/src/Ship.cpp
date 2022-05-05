@@ -81,3 +81,13 @@ Ship& Ship::operator+=(int crewToAdd)
 
     return *this;
 }
+
+Ship& Ship::operator-=(int crewToSubstruct)
+{
+    int new_crew_number = crew_ - crewToSubstruct;
+    if (new_crew_number >= 0) {
+        crew_ = new_crew_number;
+    }
+
+    return *this;
+}
