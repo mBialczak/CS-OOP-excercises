@@ -73,6 +73,10 @@ void Ship::setName(const std::string& newName)
 
 Ship& Ship::operator+=(int crewToAdd)
 {
-    crew_ += crewToAdd;
+    unsigned new_crew_number = crew_ + crewToAdd;
+    if (new_crew_number <= maxCrew_) {
+        crew_ = new_crew_number;
+    }
+
     return *this;
 }
