@@ -2,9 +2,20 @@
 
 #include <gtest/gtest.h>
 
-TEST(CargoTest, NameShouldReturnNameOfTheCargo)
+class CargoTest : public testing::Test
 {
-    std::string cargo_name { "banana" };
-    Cargo bananas { cargo_name };
-    EXPECT_EQ(bananas.name(), cargo_name);
+  protected:
+    // CargoTest();
+
+    Cargo bananas { "banana", 3500 };
+};
+
+TEST_F(CargoTest, NameShouldReturnNameOfTheCargo)
+{
+    EXPECT_EQ(bananas.name(), "banana");
+}
+
+TEST_F(CargoTest, AmountShouldReturnAmountOfCargoI)
+{
+    EXPECT_EQ(bananas.amount(), 3500);
 }
