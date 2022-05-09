@@ -28,8 +28,11 @@ target_link_libraries(${PROJECT_NAME} ship-lib)
 target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -pedantic -Wconversion -Werror)
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
 
+set(Test_Files
+    src/ShipTest.cpp
+    src/CargoTest.cpp)
 # test target
-add_executable(${PROJECT_NAME}-ut src/test.cpp)
+add_executable(${PROJECT_NAME}-ut ${Test_Files})
 target_link_libraries(${PROJECT_NAME}-ut ship-lib gtest_main)
 target_compile_options(${PROJECT_NAME}-ut PRIVATE -Wall -Wextra -pedantic)
 target_compile_features(${PROJECT_NAME}-ut PRIVATE cxx_std_20)
