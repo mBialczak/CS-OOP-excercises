@@ -24,3 +24,9 @@ TEST_F(CargoTest, BasePriceShouldReturnBasePriceOfTheCargo)
 {
     EXPECT_EQ(bananas.basePrice(), 1.05);
 }
+
+TEST_F(CargoTest, CompoundAddOperatorShouldAddAmountOfCargo)
+{
+    bananas += 400;
+    EXPECT_EQ(bananas.amount(), 3900);
+}
