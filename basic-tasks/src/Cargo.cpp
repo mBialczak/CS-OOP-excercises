@@ -1,8 +1,9 @@
 #include "Cargo.hpp"
 
-Cargo::Cargo(std::string name, int amount_kg)
+Cargo::Cargo(std::string name, int amountKg, double basePrice)
     : name_(name)
-    , amount_(amount_kg)
+    , amount_(amountKg)
+    , basePrice_(basePrice)
 { }
 
 std::string Cargo::name() const
@@ -13,4 +14,9 @@ std::string Cargo::name() const
 int Cargo::amount() const
 {
     return amount_;
+}
+
+double Cargo::basePrice() const
+{
+    return basePrice_;
 }
