@@ -17,14 +17,19 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 
-# ship class lib target
-add_library(ship-lib src/Ship.cpp)
-target_compile_options(ship-lib PRIVATE -Wall -Wextra -pedantic -Wconversion -Werror)
-target_compile_features(ship-lib PRIVATE cxx_std_20)
+# Ship class lib target
+add_library(Ship-lib src/Ship.cpp)
+target_compile_options(Ship-lib PRIVATE -Wall -Wextra -pedantic -Wconversion -Werror)
+target_compile_features(Ship-lib PRIVATE cxx_std_20)
+
+# Cargo class lib target
+add_library(Cargo-lib src/Cargo.cpp)
+target_compile_options(Cargo-lib PRIVATE -Wall -Wextra -pedantic -Wconversion -Werror)
+target_compile_features(Cargo-lib PRIVATE cxx_std_20)
 
 # main app target
 add_executable(${PROJECT_NAME} src/main.cpp)
-target_link_libraries(${PROJECT_NAME} ship-lib)
+target_link_libraries(${PROJECT_NAME} Ship-lib Cargo-lib)
 target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -pedantic -Wconversion -Werror)
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
 
@@ -33,7 +38,7 @@ set(Test_Files
     src/CargoTest.cpp)
 # test target
 add_executable(${PROJECT_NAME}-ut ${Test_Files})
-target_link_libraries(${PROJECT_NAME}-ut ship-lib gtest_main)
+target_link_libraries(${PROJECT_NAME}-ut Ship-lib Cargo-lib gtest_main)
 target_compile_options(${PROJECT_NAME}-ut PRIVATE -Wall -Wextra -pedantic)
 target_compile_features(${PROJECT_NAME}-ut PRIVATE cxx_std_20)
 
