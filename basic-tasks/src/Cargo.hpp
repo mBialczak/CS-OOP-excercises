@@ -10,6 +10,8 @@ class Cargo
     std::string name() const;
     int amount() const;
     double basePrice() const;
+    // setters
+    Cargo& operator+=(int amountKg);
 
   private:
     std::string name_;   // name of the cargo

@@ -20,3 +20,9 @@ double Cargo::basePrice() const
 {
     return basePrice_;
 }
+
+Cargo& Cargo::operator+=(int amountKg)
+{
+    amount_ += amountKg;
+    return *this;
+}
