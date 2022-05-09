@@ -11,7 +11,8 @@ class Cargo
     int amount() const;
     double basePrice() const;
     // setters
-    Cargo& operator+=(int amountKg);
+    Cargo& operator+=(int amountKg);   // add cargo amount
+    Cargo& operator-=(int amountKg);   // decrement cargo amount
 
   private:
     std::string name_;   // name of the cargo
