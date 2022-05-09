@@ -30,3 +30,21 @@ TEST_F(CargoTest, CompoundAddOperatorShouldAddAmountOfCargo)
     bananas += 400;
     EXPECT_EQ(bananas.amount(), 3900);
 }
+
+TEST_F(CargoTest, CompoundSubstractOperatorShouldDecrementAmountOfCargo)
+{
+    bananas -= 500;
+    EXPECT_EQ(bananas.amount(), 3000);
+}
+
+TEST_F(CargoTest, CompoundSubOperatorShouldWorkForExactAmountNullification)
+{
+    bananas -= 3500;
+    EXPECT_EQ(bananas.amount(), 0);
+}
+
+TEST_F(CargoTest, CompoundSubstractOperatorShoulDoNothingIfAttemptToRemoveMoreCargoThanThereIs)
+{
+    bananas -= 5000;
+    EXPECT_EQ(bananas.amount(), 3500);
+}
