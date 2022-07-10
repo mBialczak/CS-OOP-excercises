@@ -1,3 +1,4 @@
+#include "Alcohol.hpp"
 #include "Fruit.hpp"
 
 #include <gtest/gtest.h>
@@ -7,22 +8,58 @@ namespace cargo::test {
 class CargoTest : public testing::Test
 {
   protected:
-    Fruit bananas { "banana", 3500, 1.05, 10 };
+    Fruit bananas { "banana", 3500, 1.05, 10.0 };
+    Alcohol vodka { "vodka", 2000, 20.0, 40.0 };
 };
 
 TEST_F(CargoTest, NameShouldReturnNameOfTheCargo)
 {
     EXPECT_EQ(bananas.name(), "banana");
+    EXPECT_EQ(vodka.name(), "vodka");
 }
 
 TEST_F(CargoTest, AmountShouldReturnAmountOfCargoI)
 {
     EXPECT_EQ(bananas.amount(), 3500);
+    EXPECT_EQ(vodka.amount(), 2000);
 }
 
 TEST_F(CargoTest, BasePriceShouldReturnBasePriceOfTheCargo)
 {
     EXPECT_EQ(bananas.basePrice(), 1.05);
+    EXPECT_EQ(vodka.basePrice(), 20.0);
+}
+
+TEST_F(CargoTest, CompoundAddOperatorShouldAddAmountOfCargo)
+{
+    bananas += 400;
+    vodka += 100;
+    EXPECT_EQ(bananas.amount(), 3900);
+    EXPECT_EQ(vodka.amount(), 2100);
+}
+
+TEST_F(CargoTest, CompoundSubstractOperatorShouldDecrementAmountOfCargo)
+{
+    bananas -= 500;
+    vodka -= 300;
+    EXPECT_EQ(bananas.amount(), 3000);
+    EXPECT_EQ(vodka.amount(), 1700);
+}
+
+TEST_F(CargoTest, CompoundSubOperatorShouldWorkForExactAmountNullification)
+{
+    bananas -= 3500;
+    vodka -= 2000;
+    EXPECT_EQ(bananas.amount(), 0);
+    EXPECT_EQ(vodka.amount(), 0);
+}
+
+TEST_F(CargoTest, CompoundSubstractOperatorShoulDoNothingIfAttemptToRemoveMoreCargoThanThereIs)
+{
+    bananas -= 5000;
+    vodka -= 4000;
+    EXPECT_EQ(bananas.amount(), 3500);
+    EXPECT_EQ(vodka.amount(), 2000);
 }
 
 TEST_F(CargoTest, ForFruitGetPriceShouldReflectWorthFactorDecrease)
@@ -58,27 +95,33 @@ TEST_F(CargoTest, ForFruitTimeToSpoilShouldReturnTimeLeftToSpoil)
     EXPECT_EQ(bananas.timeBeforeExpiry(), 8);
 }
 
-TEST_F(CargoTest, CompoundAddOperatorShouldAddAmountOfCargo)
+TEST_F(CargoTest, AlcoholConstructorShouldThrowInvalidArgumentIfPercentageGivenHigherThan96)
 {
-    bananas += 400;
-    EXPECT_EQ(bananas.amount(), 3900);
+    EXPECT_THROW({ (Alcohol("Super Strong Alc",
+                            1000,
+                            50.0,
+                            100.0)); },
+                 std::invalid_argument);
 }
 
-TEST_F(CargoTest, CompoundSubstractOperatorShouldDecrementAmountOfCargo)
+TEST_F(CargoTest, AlcoholConstructorShouldNOTthrowIfGivenCorrectArguments)
 {
-    bananas -= 500;
-    EXPECT_EQ(bananas.amount(), 3000);
+    EXPECT_NO_THROW({ (Alcohol { "Super Mocny",
+                                 2000,
+                                 2.5,
+                                 8.0 }); });
 }
 
-TEST_F(CargoTest, CompoundSubOperatorShouldWorkForExactAmountNullification)
+TEST_F(CargoTest, ForAlcoholPecentageShouldReturnPercentageAssignedDuringConstruction)
 {
-    bananas -= 3500;
-    EXPECT_EQ(bananas.amount(), 0);
+    EXPECT_EQ(vodka.percentage(), 40.0);
 }
 
-TEST_F(CargoTest, CompoundSubstractOperatorShoulDoNothingIfAttemptToRemoveMoreCargoThanThereIs)
+TEST_F(CargoTest, ForAlcoholPriceShouldReturnPriceCorrectedForAlcoholPercentage)
 {
-    bananas -= 5000;
-    EXPECT_EQ(bananas.amount(), 3500);
+    double vodkas_alcohol_value = vodka.percentage() / Alcohol::max_alc_value * vodka.basePrice();
+
+    EXPECT_DOUBLE_EQ(vodka.price(), vodkas_alcohol_value);
 }
+
 }   // namespace cargo::test
