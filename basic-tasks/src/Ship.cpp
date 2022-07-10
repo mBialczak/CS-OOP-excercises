@@ -1,5 +1,7 @@
 #include "Ship.hpp"
 
+namespace ship {
+
 Ship::Ship(const std::string& id,
            const std::string& name,
            double speed,
@@ -91,3 +93,4 @@ Ship& Ship::operator-=(int crewToSubstruct)
 
     return *this;
 }
+}   // namespace ship

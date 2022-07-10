@@ -18,7 +18,11 @@ FetchContent_MakeAvailable(googletest)
 enable_testing()
 
 # Ship class lib target
-add_library(Ship-lib src/Ship.cpp)
+add_library(Ship-lib
+            src/Ship.cpp
+            src/Fruit.cpp
+            src/Alcohol.cpp
+            src/Item.cpp)
 target_compile_options(Ship-lib PRIVATE -Wall -Wextra -pedantic -Wconversion -Werror)
 target_compile_features(Ship-lib PRIVATE cxx_std_20)
 

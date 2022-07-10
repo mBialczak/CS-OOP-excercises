@@ -2,25 +2,27 @@
 
 #include <gtest/gtest.h>
 
+namespace ship::test {
+
 class ShipTest : public testing::Test
 {
-  protected:
+  public:
     ShipTest();
     Ship empty_ship_;
     Ship ship_with_id_and_name_;
-    Ship ship_with_id_name_speed;
-    Ship ship_with_max_crew;
-    Ship ship_with_capacity;
-    Ship jevenau;
+    Ship ship_with_id_name_speed_;
+    Ship ship_with_max_crew_;
+    Ship ship_with_capacity_;
+    Ship jevenau_;
 };
 
 ShipTest::ShipTest()
     : empty_ship_()
     , ship_with_id_and_name_("Z3EW", "Jevenau", 14, 10, 2100)
-    , ship_with_id_name_speed("B4EZ", "Morning Star", 10.2)
-    , ship_with_max_crew("EYNN", "Sniadecki", 15.5, 800)
-    , ship_with_capacity("AE4E", "MSC Incredible", 13.5, 30, 4000)
-    , jevenau("Z3EW", "Jevenau", 14, 10, 2100)
+    , ship_with_id_name_speed_("B4EZ", "Morning Star", 10.2)
+    , ship_with_max_crew_("EYNN", "Sniadecki", 15.5, 800)
+    , ship_with_capacity_("AE4E", "MSC Incredible", 13.5, 30, 4000)
+    , jevenau_("Z3EW", "Jevenau", 14, 10, 2100)
 {
 }
 
@@ -44,17 +46,17 @@ TEST_F(ShipTest, NameShouldReturnNameOfNamedShip)
 
 TEST_F(ShipTest, SpeedShouldReturnCorrectSpeedOfTheShip)
 {
-    EXPECT_EQ(ship_with_id_name_speed.speed(), 10.2);
+    EXPECT_EQ(ship_with_id_name_speed_.speed(), 10.2);
 }
 
 TEST_F(ShipTest, MaxCrewShouldReturnShipsMaxCrewWhenSet)
 {
-    EXPECT_EQ(ship_with_max_crew.maxCrew(), 800);
+    EXPECT_EQ(ship_with_max_crew_.maxCrew(), 800);
 }
 
 TEST_F(ShipTest, CapacityShouldReturnShipsCapacityWhenSet)
 {
-    EXPECT_EQ(ship_with_capacity.capacity(), 4000);
+    EXPECT_EQ(ship_with_capacity_.capacity(), 4000);
 }
 
 TEST_F(ShipTest, SetNameShouldSetNameInAValidWay)
@@ -71,34 +73,35 @@ TEST_F(ShipTest, CrewShouldReturnCurrentNumberOfCrewEnroled)
 
 TEST_F(ShipTest, CompoundAddAssingOperShouldAddCrewToTheShip)
 {
-    ship_with_max_crew += 10;
-    auto new_crew_number = ship_with_max_crew.crew();
+    ship_with_max_crew_ += 10;
+    auto new_crew_number = ship_with_max_crew_.crew();
     EXPECT_EQ(new_crew_number, 10);
 }
 
 TEST_F(ShipTest, AddinCrewWithOperatorShouldDoNothingIfMaxCrewExceeded)
 {
-    jevenau += 5;
-    jevenau += 3;
+    jevenau_ += 5;
+    jevenau_ += 3;
     // another addition exceeding crew max should not change the crew number
-    jevenau += 7;
-    auto crew = jevenau.crew();
+    jevenau_ += 7;
+    auto crew = jevenau_.crew();
     EXPECT_EQ(crew, 8);
 }
 
 TEST_F(ShipTest, CompoundSubstractionOperatorShouldSubstructCrew)
 {
-    jevenau += 10;
-    jevenau -= 3;
-    auto current_crew = jevenau.crew();
+    jevenau_ += 10;
+    jevenau_ -= 3;
+    auto current_crew = jevenau_.crew();
     EXPECT_EQ(current_crew, 7);
 }
 
 TEST_F(ShipTest, CompoundSubstractionShouldDoNothingIfCrewWouldFallBelowZero)
 {
 
-    jevenau += 4;
-    jevenau -= 6;
-    auto current_crew = jevenau.crew();
+    jevenau_ += 4;
+    jevenau_ -= 6;
+    auto current_crew = jevenau_.crew();
     EXPECT_EQ(current_crew, 4);
 }
+}   // namespace ship::test

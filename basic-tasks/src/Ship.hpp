@@ -1,6 +1,8 @@
 #pragma once
 
 #include <string>
+
+namespace ship {
 class Ship
 {
   public:
@@ -31,3 +33,4 @@ class Ship
     int crew_;
     unsigned capacity_;
 };
+}   //  namespace ship
