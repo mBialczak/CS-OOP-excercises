@@ -69,6 +69,11 @@ int Ship::crew() const
     return crew_;
 }
 
+const Ship::CargoHoldContainer& Ship::cargoHold() const
+{
+    return cargo_hold_;
+}
+
 void Ship::setName(const std::string& newName)
 {
     name_ = newName;
@@ -82,6 +87,19 @@ Ship& Ship::operator+=(int crewToAdd)
     }
 
     return *this;
+}
+
+void Ship::load(std::shared_ptr<::cargo::Cargo> cargo)
+{
+    cargo_hold_.emplace_back(cargo);
+}
+
+void Ship::unload(const cargo::Cargo* const cargo)
+{
+    std::erase_if(cargo_hold_,
+                  [cargo](const auto& cargoSptr) {
+                      return cargoSptr.get() == cargo;
+                  });
 }
 
 Ship& Ship::operator-=(int crewToSubstruct)

@@ -1,12 +1,24 @@
 #include "Ship.hpp"
 
+#include "Alcohol.hpp"
+#include "Fruit.hpp"
+#include "Item.hpp"
+
+#include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
 namespace ship::test {
 
+using cargo::Alcohol;
+using cargo::Cargo;
+using cargo::Fruit;
+using cargo::Item;
+using cargo::Rarity;
+using namespace testing;
+
 class ShipTest : public testing::Test
 {
-  public:
+  protected:
     ShipTest();
     Ship empty_ship_;
     Ship ship_with_id_and_name_;
@@ -14,6 +26,10 @@ class ShipTest : public testing::Test
     Ship ship_with_max_crew_;
     Ship ship_with_capacity_;
     Ship jevenau_;
+
+    std::shared_ptr<Cargo> beer_;
+    std::shared_ptr<Cargo> strawberries_;
+    std::shared_ptr<Cargo> smartphones_;
 };
 
 ShipTest::ShipTest()
@@ -23,6 +39,9 @@ ShipTest::ShipTest()
     , ship_with_max_crew_("EYNN", "Sniadecki", 15.5, 800)
     , ship_with_capacity_("AE4E", "MSC Incredible", 13.5, 30, 4000)
     , jevenau_("Z3EW", "Jevenau", 14, 10, 2100)
+    , beer_(std::make_shared<Alcohol>("Beer- light", 2000, 50.0, 5.0))
+    , strawberries_(std::make_shared<Fruit>("strawberries", 4500, 12.5, 9.0))
+    , smartphones_(std::make_shared<Item>("Smartphones", 1500, 1200, Rarity::common))
 {
 }
 
@@ -103,5 +122,46 @@ TEST_F(ShipTest, CompoundSubstractionShouldDoNothingIfCrewWouldFallBelowZero)
     jevenau_ -= 6;
     auto current_crew = jevenau_.crew();
     EXPECT_EQ(current_crew, 4);
+}
+
+TEST_F(ShipTest, CargoHoldShouldReturnTheReferenceToCargoHoldContainer)
+{
+    const auto& cargo_hold = jevenau_.cargoHold();
+
+    EXPECT_EQ(cargo_hold.size(), 0);
+}
+
+TEST_F(ShipTest, LoadShouldBeAbleToAddCargoToShipsVectorOfCargos)
+{
+    jevenau_.load(beer_);
+    jevenau_.load(strawberries_);
+    jevenau_.load(smartphones_);
+
+    EXPECT_THAT(jevenau_.cargoHold(), ElementsAre(beer_, strawberries_, smartphones_));
+}
+
+TEST_F(ShipTest, UnloadShouldRemoveCargoFromCargoHoldContainer)
+{
+    jevenau_.load(beer_);
+    jevenau_.load(strawberries_);
+    jevenau_.load(smartphones_);
+    auto size_before_unloading = jevenau_.cargoHold().size();
+
+    jevenau_.unload(strawberries_.get());
+
+    EXPECT_NE(jevenau_.cargoHold().size(), size_before_unloading);
+    EXPECT_THAT(jevenau_.cargoHold(), ElementsAre(beer_, smartphones_));
+}
+
+TEST_F(ShipTest, UnloadShouldNOTchangeCargoHoldContainerIfRequestedCargoIsNotInTheHold)
+{
+    jevenau_.load(beer_);
+    jevenau_.load(smartphones_);
+    auto size_before_unloading = jevenau_.cargoHold().size();
+
+    jevenau_.unload(strawberries_.get());
+
+    EXPECT_EQ(jevenau_.cargoHold().size(), size_before_unloading);
+    EXPECT_THAT(jevenau_.cargoHold(), ElementsAre(beer_, smartphones_));
 }
 }   // namespace ship::test

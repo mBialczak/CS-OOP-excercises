@@ -42,7 +42,7 @@ set(Test_Files
     src/CargoTest.cpp)
 # test target
 add_executable(${PROJECT_NAME}-ut ${Test_Files})
-target_link_libraries(${PROJECT_NAME}-ut Ship-lib Cargo-lib gtest_main)
+target_link_libraries(${PROJECT_NAME}-ut Ship-lib Cargo-lib gtest_main gmock_main)
 target_compile_options(${PROJECT_NAME}-ut PRIVATE -Wall -Wextra -pedantic)
 target_compile_features(${PROJECT_NAME}-ut PRIVATE cxx_std_20)
 
