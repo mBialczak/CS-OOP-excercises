@@ -27,6 +27,7 @@ target_compile_features(Ship-lib PRIVATE cxx_std_20)
 add_library(Cargo-lib
             src/Alcohol.cpp
             src/Cargo.cpp
+            src/DryFruit.cpp
             src/Fruit.cpp
             src/Item.cpp
             )

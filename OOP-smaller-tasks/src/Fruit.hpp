@@ -19,7 +19,7 @@ class Fruit : public Cargo
     double basePrice() const override;
     double timeBeforeExpiry() const;
     // setters
-    Fruit& operator--();   // decrease time to spoil
+    virtual Fruit& operator--();   // decrease time to spoil
 
   protected:
     double expiry_time_;

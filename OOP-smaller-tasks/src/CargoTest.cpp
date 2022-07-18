@@ -1,15 +1,19 @@
 #include "Alcohol.hpp"
-#include "Fruit.hpp"
+#include "DryFruit.hpp"
 #include "Item.hpp"
 
 #include <gtest/gtest.h>
 
 namespace cargo::test {
 
+constexpr double cBananasBasePrice = 1.05;
+constexpr double cBananasTimeToExpiry = 10.0;
+
 class CargoTest : public testing::Test
 {
   protected:
-    Fruit bananas { "banana", 3'500, 1.05, 10.0 };
+    Fruit bananas { "banana", 3'500, cBananasBasePrice, cBananasTimeToExpiry };
+    DryFruit dried_bananas { "banana", 1'200, cBananasBasePrice, cBananasTimeToExpiry };
     Alcohol vodka { "vodka", 2'000, 20.0, 40.0 };
     Item commonItem { "ordinary classic guitar", 10, 1'000, Rarity::common };
     Item rareItem { "custom electric guitar", 2, 1'000, Rarity::rare };
@@ -147,4 +151,41 @@ TEST_F(CargoTest, ForItemPriceShouldBeDeterminedBasedOnItemsRarity)
     EXPECT_EQ(epicItem.price(), epicItem.basePrice() * 10.0);
     EXPECT_EQ(legendaryItem.price(), legendaryItem.basePrice() * 100.0);
 }
+
+TEST_F(CargoTest, ForDryFruitOperatorMinusMinusShouldDecreaseTimeLeftOnceForTenCalls)
+{
+    auto expiry_time_before_decrease = dried_bananas.timeBeforeExpiry();
+    for (size_t i = 0; i < 35; ++i) {
+        --dried_bananas;
+    }
+    --bananas;
+    --bananas;
+    --bananas;
+
+    ASSERT_EQ(dried_bananas.timeBeforeExpiry(), bananas.timeBeforeExpiry());
+    EXPECT_LT(dried_bananas.timeBeforeExpiry(), expiry_time_before_decrease);
+    EXPECT_EQ(dried_bananas.timeBeforeExpiry(), expiry_time_before_decrease - 3);
+}
+
+TEST_F(CargoTest, ForDryFruitPriceShouldReturnTripleBasePrice)
+{
+    for (size_t i = 0; i < 35; ++i) {
+        --dried_bananas;
+    }
+    --bananas;
+    --bananas;
+    --bananas;
+
+    ASSERT_EQ(dried_bananas.timeBeforeExpiry(), bananas.timeBeforeExpiry());
+    ASSERT_EQ(dried_bananas.basePrice(), bananas.basePrice());
+    EXPECT_NEAR(dried_bananas.price(), bananas.price() * 3, 0.0001);
+}
+
+TEST_F(CargoTest, ForDryFruitNameShouldAddDryBeforeFruitName)
+{
+    std::string dried_bananas_expected_name = "dried " + bananas.name();
+
+    EXPECT_EQ(dried_bananas.name(), dried_bananas_expected_name);
+}
+
 }   // namespace cargo::test
