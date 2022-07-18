@@ -34,7 +34,7 @@ double Fruit::basePrice() const
 
 Fruit& Fruit::operator--()
 {
-    --time_left_;
+    time_left_ -= 1.0;
     return *this;
 }
 
