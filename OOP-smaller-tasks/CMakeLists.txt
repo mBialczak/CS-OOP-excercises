@@ -19,15 +19,17 @@ enable_testing()
 
 # Ship class lib target
 add_library(Ship-lib
-            src/Ship.cpp
-            src/Fruit.cpp
-            src/Alcohol.cpp
-            src/Item.cpp)
+            src/Ship.cpp)
 target_compile_options(Ship-lib PRIVATE -Wall -Wextra -pedantic -Wconversion -Werror)
 target_compile_features(Ship-lib PRIVATE cxx_std_20)
 
 # Cargo class lib target
-add_library(Cargo-lib src/Cargo.cpp)
+add_library(Cargo-lib
+            src/Alcohol.cpp
+            src/Cargo.cpp
+            src/Fruit.cpp
+            src/Item.cpp
+            )
 target_compile_options(Cargo-lib PRIVATE -Wall -Wextra -pedantic -Wconversion -Werror)
 target_compile_features(Cargo-lib PRIVATE cxx_std_20)
 
